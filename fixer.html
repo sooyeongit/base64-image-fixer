@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base64 이미지 수정 도구</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="floating-nav">
+        <div class="nav-content">
+            <a href="index.html" class="nav-brand">Base64 Image Fixer</a>
+            <div class="nav-icons">
+                <a href="fixer.html" class="nav-icon active">🔧</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="tool-section">
+            <h2>이미지 테스트</h2>
+            <p class="section-subtitle">이미지 URL을 테스트하여 Base64 데이터 손상 여부를 확인하세요</p>
+            
+            <div class="tool-container">
+                <div class="input-area">
+                    <textarea id="base64Input" placeholder="Base64 이미지 URL을 여기에 붙여넣으세요..."></textarea>
+                    <button class="btn" onclick="analyzeBase64()">분석하기</button>
+                </div>
+                <div class="result-area" id="resultArea" style="display: none;">
+                    <div class="preview-container">
+                        <img id="imagePreview" alt="미리보기" style="display: none;">
+                        <div id="errorMessage" class="error-message"></div>
+                    </div>
+                    <div class="analysis-result">
+                        <h3>분석 결과</h3>
+                        <div id="analysisDetails"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="solution-section">
+            <h2>해결 방법</h2>
+            
+            <div class="solution-card">
+                <h3>방법 1: 원본 이미지 파일 다시 업로드</h3>
+                <p>가장 확실한 방법입니다. 원본 이미지 파일을 다시 업로드하여 완전한 base64로 변환하세요.</p>
+                <div class="upload-area" id="uploadArea">
+                    <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                    <p>📁 이미지 파일을 클릭하거나 드래그해서 업로드</p>
+                    <p class="upload-hint">JPG, PNG, GIF 지원 (최대 10MB)</p>
+                </div>
+                <div class="conversion-result" id="conversionResult" style="display: none;">
+                    <textarea id="convertedBase64" readonly></textarea>
+                    <div class="button-group">
+                        <button class="btn" onclick="copyToClipboard()">📋 복사</button>
+                        <button class="btn" onclick="downloadAsFile()">💾 저장</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="solution-card">
+                <h3>방법 2: 데이터베이스 설정 수정</h3>
+                <p>데이터베이스에서 base64 데이터가 잘리지 않도록 필드 타입을 수정하세요.</p>
+                <div class="code-block">
+                    <pre><code>-- MySQL의 경우
+ALTER TABLE your_table MODIFY your_column LONGTEXT;
+
+-- 또는 더 큰 크기로 설정
+ALTER TABLE your_table MODIFY your_column TEXT(16777215);</code></pre>
+                </div>
+            </div>
+
+            <div class="solution-card">
+                <h3>방법 3: 파일 업로드 방식으로 변경</h3>
+                <p>Base64 대신 실제 파일을 서버에 저장하고 URL로 참조하는 방식이 더 안정적입니다.</p>
+                <div class="code-block">
+                    <pre><code>// 파일 업로드 처리 예시
+const formData = new FormData();
+formData.append('image', fileInput.files[0]);
+
+fetch('/upload', {
+    method: 'POST',
+    body: formData
+})
+.then(response => response.json())
+.then(data => {
+    const imageUrl = data.url;
+    // 이미지 URL 사용
+});</code></pre>
+                </div>
+            </div>
+
+            <div class="solution-card">
+                <h3>방법 4: 임시 해결책 - 외부 이미지 호스팅</h3>
+                <p>이미지를 외부 서비스(imgur, cloudinary 등)에 업로드하고 URL을 사용하세요.</p>
+                <div class="code-block">
+                    <pre><code>&lt;img src="https://i.imgur.com/your-image.png" alt="Your Image"&gt;</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="recommendations">
+            <div class="recommendation-card">
+                <div class="recommendation-icon">⭐</div>
+                <div class="recommendation-content">
+                    <h3>장기적 해결책</h3>
+                    <p>Base64 인코딩은 파일 크기를 약 33% 증가시키고 데이터베이스를 무겁게 만듭니다. 실제 파일 업로드 시스템을 구축하여 이미지를 서버에 저장하고 URL로 참조하는 것이 좋습니다.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html> 
