@@ -2,6 +2,8 @@
 
 A web-based tool to diagnose and fix Base64 image encoding issues.
 
+**Made with Cloud**
+
 ## Features
 
 - 🔍 **Image Analysis**: Test Base64 image URLs and detect common issues
