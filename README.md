@@ -10,6 +10,7 @@ A web-based tool to diagnose and fix Base64 image encoding issues.
 - 🛠️ **Multiple Solutions**: Various approaches to fix Base64 image problems
 - 📱 **Responsive Design**: Works on all devices with a clean, minimalist interface
 - 🎯 **User-Friendly**: Simple and intuitive interface for easy use
+- 🔗 **URL Shortening**: Create short, shareable links for Base64 image URLs
 
 ## Problem
 
@@ -39,6 +40,11 @@ Base64 image encoding issues commonly occur when:
    - Use external services (imgur, cloudinary, etc.)
    - Upload images and use their URLs
    - Temporary solution for quick fixes
+
+5. **URL Shortening**
+   - Convert long Base64 URLs into short, shareable links
+   - Easy to share and distribute
+   - Automatically loads the original Base64 image when accessed
 
 ## Usage
 

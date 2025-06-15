@@ -197,4 +197,58 @@ function downloadAsFile() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-} 
+}
+
+// URL 단축 관련 함수들
+function shortenUrl() {
+    const urlInput = document.getElementById('urlInput').value.trim();
+    if (!urlInput) {
+        alert('URL을 입력해주세요.');
+        return;
+    }
+
+    // Base64 URL인지 확인
+    if (!urlInput.startsWith('data:image/')) {
+        alert('유효한 Base64 이미지 URL이 아닙니다.');
+        return;
+    }
+
+    // URL 단축 로직 (예시로 localStorage 사용)
+    const shortenedId = generateShortId();
+    localStorage.setItem(shortenedId, urlInput);
+
+    // 결과 표시
+    const shortenedUrl = `${window.location.origin}${window.location.pathname}?id=${shortenedId}`;
+    document.getElementById('shortenedUrl').value = shortenedUrl;
+    document.getElementById('shortenedUrlResult').style.display = 'block';
+}
+
+function generateShortId() {
+    return Math.random().toString(36).substring(2, 8);
+}
+
+function copyShortenedUrl() {
+    const shortenedUrl = document.getElementById('shortenedUrl');
+    shortenedUrl.select();
+    document.execCommand('copy');
+    alert('URL이 클립보드에 복사되었습니다.');
+}
+
+function openShortenedUrl() {
+    const shortenedUrl = document.getElementById('shortenedUrl').value;
+    window.open(shortenedUrl, '_blank');
+}
+
+// 페이지 로드 시 URL 파라미터 확인
+window.addEventListener('load', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+    
+    if (id) {
+        const originalUrl = localStorage.getItem(id);
+        if (originalUrl) {
+            document.getElementById('base64Input').value = originalUrl;
+            analyzeBase64();
+        }
+    }
+}); 

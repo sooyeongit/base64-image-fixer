@@ -101,6 +101,30 @@ fetch('/upload', {
             </div>
         </section>
 
+        <section class="solution-section">
+            <h2>URL 단축</h2>
+            
+            <div class="solution-card">
+                <h3>Base64 URL 단축</h3>
+                <p>긴 Base64 URL을 짧게 만들어 공유하기 쉽게 만듭니다.</p>
+                <div class="tool-container">
+                    <div class="input-area">
+                        <textarea id="urlInput" placeholder="Base64 URL을 여기에 붙여넣으세요..."></textarea>
+                        <button class="btn" onclick="shortenUrl()">URL 단축하기</button>
+                    </div>
+                    <div class="result-area" id="shortenedUrlResult" style="display: none;">
+                        <div class="shortened-url">
+                            <input type="text" id="shortenedUrl" readonly>
+                            <div class="button-group">
+                                <button class="btn" onclick="copyShortenedUrl()">📋 복사</button>
+                                <button class="btn" onclick="openShortenedUrl()">🔗 열기</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="recommendations">
             <div class="recommendation-card">
                 <div class="recommendation-icon">⭐</div>

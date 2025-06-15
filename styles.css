@@ -292,7 +292,7 @@ body {
 /* Solution Section */
 .solution-section {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 0 auto 80px;
 }
 
 .solution-section h2 {
@@ -480,4 +480,48 @@ body {
     position: absolute;
     left: 0;
     color: #666;
+}
+
+.shortened-url input {
+    width: 95%;
+    height: 40px;
+    padding: 0 15px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    margin: 15px;
+    line-height: 50px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    text-align: left;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    transition: border-color 0.3s ease;
+}
+
+.shortened-url input::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.shortened-url input:hover {
+    border-color: #000;
+    scrollbar-width: thin; /* Firefox */
+    -ms-overflow-style: auto; /* IE and Edge */
+}
+
+.shortened-url input:hover::-webkit-scrollbar {
+    display: block; /* Chrome, Safari, Opera */
+    height: 6px;
+}
+
+.shortened-url input:hover::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 3px;
+}
+
+.shortened-url input:hover::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    border-radius: 3px;
 } 
